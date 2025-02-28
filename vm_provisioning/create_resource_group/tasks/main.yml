@@ -1,0 +1,11 @@
+---
+- name: "Create resource group"
+  azure.azcollection.azure_rm_resourcegroup:
+    subscription_id: "{{create_resource_group_sub_id}}"
+    tenant: "{{create_resource_group_tenant_id}}"
+    client_id: "{{create_resource_group_client_id_vm}}"
+    secret: "{{create_resource_group_secret_id}}"
+    name: "{{create_resource_group_rg_name}}"
+    location: "{{create_resource_group_rg_location}}"
+    state: present
+  # register: resource_group

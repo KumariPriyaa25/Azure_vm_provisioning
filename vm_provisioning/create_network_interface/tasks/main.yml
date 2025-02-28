@@ -1,0 +1,16 @@
+---
+# tasks file for vm_provisioning_network_interface
+- name: "Create network interface"
+  azure_rm_networkinterface:
+    subscription_id: "{{create_network_interface_sub_id}}"
+    tenant: "{{create_network_interface_tenant_id}}"
+    client_id: "{{create_network_interface_client_id_vm}}"
+    secret: "{{create_network_interface_secret_id}}"
+    name: "{{create_network_interface_network_interface}}"
+    resource_group: "{{create_network_interface_rg_name}}"
+    virtual_network: "{{create_network_interface_vNet_name}}"
+    subnet_name: "{{create_network_interface_sNet_name}}"
+    ip_configurations:
+      - name: ipconfig1     #needs to check
+        public_ip_address_name: publicip001
+        primary: true

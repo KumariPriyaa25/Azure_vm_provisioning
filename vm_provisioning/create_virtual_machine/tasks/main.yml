@@ -1,0 +1,26 @@
+---
+# tasks file for vm_provisioning_virtual_machine
+- name: "Create virtual machine"
+  azure.azcollection.azure_rm_virtualmachine:
+    subscription_id: "{{create_virtual_machine_sub_id}}"
+    tenant: "{{create_virtual_machine_tenant_id}}"
+    client_id: "{{create_virtual_machine_client_id_vm}}"
+    secret: "{{create_virtual_machine_secret_id}}"
+    resource_group: "{{create_virtual_machine_rg_name}}"
+    name: "{{create_virtual_machine_vm_name}}"
+    vm_size: "{{create_virtual_machine_vm_size}}"
+    os_type: "Linux"
+    admin_username: "{{create_virtual_machine_admin_username}}"
+    admin_password: "{{create_virtual_machine_admin_password}}"
+    
+    network_interface_names: "{{create_virtual_machine_network_interface}}"
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: "18.04-LTS"
+      version: latest
+
+    state: present
+    
+    
+

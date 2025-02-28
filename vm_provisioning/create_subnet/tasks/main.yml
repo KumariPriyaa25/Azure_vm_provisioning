@@ -1,0 +1,14 @@
+---
+# tasks file for vm_provisioning_subnet
+- name: "Create Subnet"
+  azure_rm_subnet:
+    subscription_id: "{{create_subnet_sub_id}}"
+    tenant: "{{create_subnet_tenant_id}}"
+    client_id: "{{create_subnet_client_id_vm}}"
+    secret: "{{create_subnet_secret_id}}"
+    resource_group: "{{create_subnet_rg_name}}"
+    virtual_network: "{{create_subnet_vNet_name}}"
+    name: "{{create_subnet_sNet_name}}"
+    address_prefixes_cidr:
+      - 10.1.0.0/16
+    state: present

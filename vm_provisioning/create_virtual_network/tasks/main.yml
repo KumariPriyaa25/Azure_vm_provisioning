@@ -1,0 +1,15 @@
+---
+# tasks file for vm_provisioning_virtual_network
+- name: "Create virtual network"
+  azure_rm_virtualnetwork:
+    subscription_id: "{{create_virtual_network_sub_id}}"
+    tenant: "{{create_virtual_network_tenant_id}}"
+    client_id: "{{create_virtual_network_client_id_vm}}"
+    secret: "{{create_virtual_network_secret_id}}"
+    resource_group: "{{create_virtual_network_rg_name}}"
+    name: "{{create_virtual_network_vNet_name}}"
+    address_prefixes_cidr:
+      - 10.1.0.0/16
+      # - "{{ custom_cidr_prefix_1 }}"
+    # register: subnet
+    state: present

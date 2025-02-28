@@ -1,0 +1,14 @@
+---
+# tasks file for vm_provisioning_public_ip
+- name: "Create public ip"
+  azure_rm_publicipaddress:
+    subscription_id: "{{create_public_ip_sub_id}}"
+    tenant: "{{create_public_ip_tenant_id}}"
+    client_id: "{{create_public_ip_client_id_vm}}"
+    secret: "{{create_public_ip_secret_id}}"
+    resource_group: "{{create_public_ip_rg_name}}"
+    name: "{{create_public_ip_publicIP_name}}"
+    allocation_method: static
+    state: present
+    
+

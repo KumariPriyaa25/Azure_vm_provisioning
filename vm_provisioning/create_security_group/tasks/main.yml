@@ -1,0 +1,21 @@
+---
+# tasks file for vm_provisioning_security_group
+- name: "Create network security group that allows SSH"
+  azure.azcollection.azure_rm_securitygroup:
+    subscription_id: "{{create_security_group_sub_id}}"
+    tenant: "{{create_security_group_tenant_id}}"
+    client_id: "{{create_security_group_client_id_vm}}"
+    secret: "{{create_security_group_secret_id}}"
+    name: "{{create_security_group_security_group_name}}"
+    resource_group: "{{create_security_group_rg_group}}"
+    rules:
+      - name: SSH
+        protocol: Tcp
+        direction: Inbound
+        priority: 1000
+        access: Allow
+        source_address_prefix: "*"
+        source_port_range: "*"
+        destination_port_range: "22"
+        destination_address_prefix: "*"
+    state: present

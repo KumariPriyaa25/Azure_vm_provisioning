@@ -1,0 +1,102 @@
+---
+- name: "VM Provisioning"
+  hosts: localhost
+  gather_facts: false
+  vars:
+    rg_name: "testRG"
+    rg_location: "East US"
+    vNet_name: "test_ansible_VN"
+    sNet_name: "test_subnet"
+    publicIP_name: "test_publicIP"
+    security_group_name: "test_security_group"
+    network_interface: "test_networkInterface"
+    vm_name: "test_vm"
+    vm_size: Standard_DS1_v2
+    admin_username: testvm
+    admin_password: test@123
+    subscription_id: "enter subscription id"
+    tenant: "Enter Tenant ID"
+    client_id: "Enter Client ID"  #appID
+    secret: "Enter the secret"  #password
+  tasks:
+    - name: "Include role for Resource Group"
+      ansible.builtin.include_role:
+        name: create_resource_group
+      vars:
+        create_resource_group_sub_id: "{{subscription_id}}"
+        create_resource_group_tenant_id: "{{tenant}}"
+        create_resource_group_client_id_vm: "{{client_id}}"
+        create_resource_group_secret_id: "{{secret}}"
+        create_resource_group_rg_name: "{{rg_name}}"
+        create_resource_group_rg_location: "{{rg_location}}"
+
+    - name: "Include role for Virtual Network"
+      ansible.builtin.include_role:
+        name: create_virtual_network
+      vars:  
+        create_virtual_network_sub_id: "{{subscription_id}}"
+        create_virtual_network_tenant_id: "{{tenant}}"
+        create_virtual_network_client_id_vm: "{{client_id}}"
+        create_virtual_network_secret_id: "{{secret}}"
+        create_virtual_network_rg_name: "{{rg_name}}"
+        create_virtual_network_vNet_name: "{{vNet_name}}"
+
+    - name: "Include role for subnet"
+      ansible.builtin.include_role:
+        name: create_subnet
+      vars: 
+        create_subnet_sub_id: "{{subscription_id}}"
+        create_subnet_tenant_id: "{{tenant}}"
+        create_subnet_client_id_vm: "{{client_id}}"
+        create_subnet_secret_id: "{{secret}}"
+        create_subnet_rg_name: "{{rg_name}}"
+        create_subnet_vNet_name: "{{vNet_name}}"
+        create_subnet_sNet_name: "{{sNet_name}}"
+
+    - name: "Include role for Public IP"
+      ansible.builtin.include_role:
+        name: create_public_ip
+      vars: 
+        create_public_ip_sub_id: "{{subscription_id}}"
+        create_public_ip_tenant_id: "{{tenant}}"
+        create_public_ip_client_id_vm: "{{client_id}}"
+        create_public_ip_secret_id: "{{secret}}"
+        create_public_ip_rg_name: "{{rg_name}}"
+        create_public_ip_publicIP_name: "{{publicIP_name}}"
+
+    - name: "Include role for security group"
+      ansible.builtin.include_role:
+        name: create_security_group
+      vars:
+        create_security_group_sub_id: "{{subscription_id}}"
+        create_security_group_tenant_id: "{{tenant}}"
+        create_security_group_client_id_vm: "{{client_id}}"
+        create_security_group_secret_id: "{{secret}}"
+        create_security_group_security_group_name: "{{security_group_name}}"
+        create_security_group_rg_group: "{{rg_name}}"
+    - name: "Include role for network interface"
+      ansible.builtin.include_role:
+        name: create_network_interface
+      vars: 
+        create_network_interface_sub_id: "{{subscription_id}}"
+        create_network_interface_tenant_id: "{{tenant}}"
+        create_network_interface_client_id_vm: "{{client_id}}"
+        create_network_interface_secret_id: "{{secret}}"
+        create_network_interface_network_interface: "{{network_interface}}"
+        create_network_interface_rg_name: "{{rg_name}}"
+        create_network_interface_vNet_name: "{{vNet_name}}"
+        create_network_interface_sNet_name: "{{sNet_name}}"
+    - name: "Include role for virtual machine"
+      ansible.builtin.include_role: 
+        name: create_virtual_machine
+      vars:
+        create_virtual_machine_sub_id: "{{subscription_id}}"
+        create_virtual_machine_tenant_id: "{{tenant}}"
+        create_virtual_machine_client_id_vm: "{{client_id}}"
+        create_virtual_machine_secret_id: "{{secret}}"
+        create_virtual_machine_rg_name: "{{rg_name}}"
+        create_virtual_machine_vm_name: "{{vm_name}}"
+        create_virtual_machine_vm_size: "{{vm_size}}"
+        create_virtual_machine_admin_username: "{{admin_username}}"
+        create_virtual_machine_admin_password: "{{admin_password}}"
+        create_virtual_machine_network_interface: "{{network_interface}}"
