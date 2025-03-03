@@ -1,5 +1,6 @@
 ---
 # tasks file for vm_provisioning_public_ip
+#test1
 - name: "Create public ip"
   azure_rm_publicipaddress:
     subscription_id: "{{create_public_ip_sub_id}}"
