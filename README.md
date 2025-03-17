@@ -56,10 +56,15 @@ az vm list -o table
 🛠 Roles Explanation
 Role Name	Description
 create_resource_group ->	Creates an Azure resource group
+
 create_virtual_network ->	Sets up a Virtual Network (VNet)
+
 create_subnet -> 	Configures a subnet inside the VNet
+
 create_security_group ->	Defines security rules for VM traffic
+
 create_public_ip ->	Allocates a public IP for the VM
+
 create_virtual_machine ->	Provisions the virtual machine with given specs
 
 📝 Customization
@@ -67,7 +72,9 @@ To customize VM properties, update the vars section in the respective roles, suc
 
 yaml
 vm_size: Standard_DS1_v2
+
 admin_username: testvm
+
 image: "UbuntuServer:Canonical:18.04-LTS:latest"
 
 📄 License
