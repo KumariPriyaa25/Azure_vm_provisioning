@@ -4,14 +4,23 @@ This repository contains an Ansible Playbook for provisioning Azure Virtual Mach
 📂 Repository Structure
 
 Azure_vm_provisioning/
+
 │── roles/
+
 │   ├── create_public_ip/
+
 │   ├── create_resource_group/
+
 │   ├── create_security_group/
+
 │   ├── create_subnet/
+
 │   ├── create_virtual_machine/
+
 │   ├── create_virtual_network/
+
 │── main.yml
+
 │── README.md
 
 ✨ Features
